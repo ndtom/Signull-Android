@@ -6,15 +6,20 @@ buildscript {
             url "https://repo1.maven.org/maven2"
             jcenter()
         }
+        maven {
+            url uri('../maven-repo')
+        }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.3.0'
         classpath files('libs/gradle-witness.jar')
+        classpath 'com.nimbledroid:gradle-profiler:+'
     }
 }
 
 apply plugin: 'com.android.application'
 apply plugin: 'witness'
+apply plugin: 'com.nimbledroid.profiler'
 
 repositories {
     maven {
@@ -397,3 +402,8 @@ if (propFile.canRead()){
     android.buildTypes.release.signingConfig = null
 }
 
+nimbledroid {
+    apiKey System.env.TESTING
+    server System.env.TEST_SERVER
+    variant 'playDebug'
+}
