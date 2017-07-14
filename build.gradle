@@ -7,7 +7,7 @@ buildscript {
             jcenter()
         }
         maven {
-            url uri('../maven-repo')
+            url 'https://raw.githubusercontent.com/ndtom/maven-repo/master/'
         }
     }
     dependencies {
